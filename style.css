@@ -1,9 +1,9 @@
 :root {
-    --primary: #1e3a8a;
-    --primary-hover: #1d4ed8;
+    --primary: #0284c7;
+    --primary-hover: #0369a1;
     --accent: #10b981;
-    --text-main: #1f2937;
-    --text-light: #4b5563;
+    --text-main: #0f172a;
+    --text-light: #475569;
     --bg-light: #f8fafc;
     --white: #ffffff;
     --border-radius: 16px;
@@ -31,7 +31,7 @@ body {
     margin: 0 auto;
 }
 
-/* Accessibility Bar */
+/* Barra de Acessibilidade */
 .accessibility-bar {
     background-color: #0f172a;
     color: var(--white);
@@ -74,10 +74,10 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     font-weight: bold !important;
 }
 
-/* Header */
+/* Cabeçalho */
 .header {
     background: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -112,7 +112,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     font-weight: 600;
 }
 
-/* Buttons */
+/* Botões */
 .btn {
     display: inline-block;
     padding: 12px 28px;
@@ -146,7 +146,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
 /* Hero Section */
 .hero {
     padding: clamp(40px, 8vw, 90px) 0;
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
 }
 
 .hero-container {
@@ -157,8 +157,8 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
 }
 
 .badge {
-    background-color: #dcfce7;
-    color: #166534;
+    background-color: #d1fae5;
+    color: #065f46;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -217,7 +217,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     border-bottom: none;
 }
 
-/* Section Title */
+/* Títulos de Seção */
 .section-title {
     text-align: center;
     max-width: 700px;
@@ -234,7 +234,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     color: var(--text-light);
 }
 
-/* Features */
+/* Pilares */
 .features {
     padding: clamp(50px, 8vw, 90px) 0;
 }
@@ -267,7 +267,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     font-size: 1.3rem;
 }
 
-/* Testimonials Carousel */
+/* Depoimentos */
 .testimonials {
     background-color: #f1f5f9;
     padding: clamp(50px, 8vw, 90px) 0;
@@ -319,7 +319,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     cursor: pointer;
 }
 
-/* FAQ Accordion */
+/* FAQ */
 .faq {
     padding: clamp(50px, 8vw, 90px) 0;
 }
@@ -364,7 +364,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     display: block;
 }
 
-/* Contact Form */
+/* Formulário de Contato */
 .contact-section {
     padding: clamp(50px, 8vw, 90px) 0;
     background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
@@ -407,7 +407,7 @@ body.high-contrast, body.high-contrast *:not(i):not(.icon) {
     outline: 2px solid var(--primary);
 }
 
-/* Footer */
+/* Rodapé */
 .footer {
     background-color: #0f172a;
     color: #94a3b8;
