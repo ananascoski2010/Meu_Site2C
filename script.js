@@ -30,19 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. COMPONENTE: Carrossel de Depoimentos (Array de Objetos) ---
     const testimonialsData = [
         {
-            quote: "O programa transformou completamente a convivência entre os alunos. Os casos de intimidação verbal reduziram drasticamente no primeiro trimestre.",
-            author: "Dra. Luciana Mendes",
-            role: "Diretora Pedagógica - Colégio Horizonte"
+            quote: "Conseguimos criar um canal seguro de denúncias e acolhimento. A mudança no clima escolar foi perceptível em poucos meses.",
+            author: "Profa. Renata Alencar",
+            role: "Coordenadora Pedagógica"
         },
         {
-            quote: "Excelente suporte para professores. Agora a equipe sabe exatamente como intervir antes que um desentendimento vire bullying.",
-            author: "Prof. Roberto Silva",
-            role: "Coordenador de Ensino Fundamental"
+            quote: "Os workshops socioemocionais trouxeram um impacto profundo na relação entre os próprios alunos. Recomendo fortemente.",
+            author: "Carlos Eduardo Rocha",
+            role: "Diretor Escolar"
         },
         {
-            quote: "A conformidade com a lei foi simples e a comunidade escolar (pais e alunos) sentiu a diferença imediata na segurança socioemocional.",
-            author: "Mariana Costa",
-            role: "Gestora Escolar"
+            quote: "Adequar a escola à legislação antibullying com o suporte dessa metodologia foi simples, estruturado e altamente eficiente.",
+            author: "Beatriz Nogueira",
+            role: "Orientadora Educacional"
         }
     ];
 
@@ -77,20 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. COMPONENTE: Acordeão FAQ (Array de Objetos) ---
     const faqData = [
         {
-            question: "Como o programa auxilia na adequação à Lei do Bullying (Lei 13.185/2015)?",
-            answer: "Fornecemos diagnósticos institucionais, relatórios periódicos, capacitação de equipe e planos de ação pedagógicos exigidos pela legislação."
+            question: "O que diz a Lei 13.185/2015 sobre a prevenção ao bullying?",
+            answer: "A lei estabelece o Programa de Combate à Intimidação Sistemática em todo o território nacional, determinando que escolas promovam medidas de conscientização, prevenção e diagnóstico sem o uso de punições meramente destrutivas."
         },
         {
-            question: "O programa se aplica a quais faixas etárias?",
-            answer: "Nossa metodologia possui módulos adaptados para o Ensino Infantil, Fundamental I e II, além do Ensino Médio."
+            question: "Como o programa atua nos casos de Cyberbullying?",
+            answer: "Oferecemos módulos educativos sobre cidadania digital, segurança online, empoderamento das vítimas e orientação para os pais acompanharem a vida digital dos filhos."
         },
         {
-            question: "Quanto tempo leva a implementação completa?",
-            answer: "A fase inicial de diagnóstico e capacitação leva cerca de 15 dias. As atividades preventivas operam ao longo de todo o ano letivo."
+            question: "Qual o público-alvo dos treinamentos?",
+            answer: "Atendemos toda a comunidade escolar: estudantes (do ensino infantil ao médio), corpo docente, equipe de apoio e famílias."
         },
         {
-            question: "Os pais e responsáveis participam do processo?",
-            answer: "Sim! Incluímos workshops para famílias, promovendo uma aliança efetiva entre a comunidade escolar e o lar."
+            question: "Como solicitar uma proposta para a minha escola?",
+            answer: "Basta preencher o formulário no final desta página para agendarmos uma apresentação personalizada com nossa equipe pedagógica."
         }
     ];
 
@@ -115,13 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const item = header.parentElement;
                 const active = item.classList.contains('active');
                 
-                // Fecha todos os itens
                 document.querySelectorAll('.accordion-item').forEach(el => {
                     el.classList.remove('active');
                     el.querySelector('.icon-toggle').textContent = '+';
                 });
 
-                // Se o clicado não estava ativo, abre ele
                 if (!active) {
                     item.classList.add('active');
                     item.querySelector('.icon-toggle').textContent = '−';
