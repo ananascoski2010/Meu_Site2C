@@ -1,135 +1,134 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- 1. ACESSIBILIDADE E MODO CONTRASTE --- */
-    let fontSizeAtual = 16;
-    const btnIncrease = document.getElementById('btn-font-increase');
-    const btnDecrease = document.getElementById('btn-font-decrease');
+    // --- 1. ACESSIBILIDADE: Tamanho da Fonte ---
+    let currentFontSize = 16;
+    const btnIncreaseFont = document.getElementById('btn-increase-font');
+    const btnDecreaseFont = document.getElementById('btn-decrease-font');
+
+    btnIncreaseFont.addEventListener('click', () => {
+        let novaFonte = currentFontSize + 2;
+        if (novaFonte >= 12 && novaFonte <= 24) {
+            currentFontSize = novaFonte;
+            document.documentElement.style.setProperty('--font-size-base', `${currentFontSize}px`);
+        }
+    });
+
+    btnDecreaseFont.addEventListener('click', () => {
+        let novaFonte = currentFontSize - 2;
+        if (novaFonte >= 12 && novaFonte <= 24) {
+            currentFontSize = novaFonte;
+            document.documentElement.style.setProperty('--font-size-base', `${currentFontSize}px`);
+        }
+    });
+
+    // --- 2. ACESSIBILIDADE: Modo Alto Contraste ---
     const btnContrast = document.getElementById('btn-contrast');
-
-    btnIncrease.addEventListener('click', () => {
-        if (fontSizeAtual < 24) {
-            fontSizeAtual += 2;
-            document.documentElement.style.fontSize = `${fontSizeAtual}px`;
-        }
-    });
-
-    btnDecrease.addEventListener('click', () => {
-        if (fontSizeAtual > 12) {
-            fontSizeAtual -= 2;
-            document.documentElement.style.fontSize = `${fontSizeAtual}px`;
-        }
-    });
-
     btnContrast.addEventListener('click', () => {
         document.body.classList.toggle('high-contrast');
     });
 
-    /* --- 2. DADOS E RENDERIZAÇÃO DO CARROSSEL DE TRATAMENTOS --- */
-    const tratamentosData = [
+    // --- 3. COMPONENTE: Carrossel de Depoimentos (Array de Objetos) ---
+    const testimonialsData = [
         {
-            titulo: "Bioestimulação de Colágeno",
-            descricao: "Restauração da firmeza da pele com compostos biocompatíveis de alta definição.",
-            imagem: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=80"
+            quote: "O programa transformou completamente a convivência entre os alunos. Os casos de intimidação verbal reduziram drasticamente no primeiro trimestre.",
+            author: "Dra. Luciana Mendes",
+            role: "Diretora Pedagógica - Colégio Horizonte"
         },
         {
-            titulo: "Harmonização Facial Alta Precisão",
-            descricao: "Preenchimento estratégico para valorização de traços naturais com ácido hialurônico puro.",
-            imagem: "https://images.unsplash.com/photo-1512290900673-7002012111d9?auto=format&fit=crop&w=600&q=80"
+            quote: "Excelente suporte para professores. Agora a equipe sabe exatamente como intervir antes que um desentendimento vire bullying.",
+            author: "Prof. Roberto Silva",
+            role: "Coordenador de Ensino Fundamental"
         },
         {
-            titulo: "Lifting Facial Sem Cortes",
-            descricao: "Tecnologia de ultrassom microfocado para firmeza profunda em camada muscular.",
-            imagem: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
-        },
-        {
-            titulo: "Remodelagem Corporal Exclusiva",
-            descricao: "Protocolo associado para quebra de gordura localizada e tonificação muscular acelerada.",
-            imagem: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80"
+            quote: "A conformidade com a lei foi simples e a comunidade escolar (pais e alunos) sentiu a diferença imediata na segurança socioemocional.",
+            author: "Mariana Costa",
+            role: "Gestora Escolar"
         }
     ];
 
-    const carouselTrack = document.getElementById('carousel-track');
-    
-    tratamentosData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'carousel-card';
-        card.innerHTML = `
-            <img src="${item.imagem}" alt="${item.titulo}">
-            <div class="carousel-card-body">
-                <h3>${item.titulo}</h3>
-                <p>${item.descricao}</p>
+    let currentTestimonialIndex = 0;
+    const carouselContainer = document.getElementById('carousel-container');
+    const btnPrev = document.getElementById('prev-testimonial');
+    const btnNext = document.getElementById('next-testimonial');
+
+    function renderTestimonial(index) {
+        const item = testimonialsData[index];
+        carouselContainer.innerHTML = `
+            <div class="testimonial-card">
+                <blockquote>"${item.quote}"</blockquote>
+                <div class="testimonial-author">${item.author}</div>
+                <div class="testimonial-role">${item.role}</div>
             </div>
         `;
-        carouselTrack.appendChild(card);
+    }
+
+    btnPrev.addEventListener('click', () => {
+        currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialsData.length) % testimonialsData.length;
+        renderTestimonial(currentTestimonialIndex);
     });
 
-    // Navegação Carrossel
-    const prevBtn = document.getElementById('carousel-prev');
-    const nextBtn = document.getElementById('carousel-next');
-
-    nextBtn.addEventListener('click', () => {
-        carouselTrack.scrollBy({ left: 320, behavior: 'smooth' });
+    btnNext.addEventListener('click', () => {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialsData.length;
+        renderTestimonial(currentTestimonialIndex);
     });
 
-    prevBtn.addEventListener('click', () => {
-        carouselTrack.scrollBy({ left: -320, behavior: 'smooth' });
-    });
+    renderTestimonial(currentTestimonialIndex);
 
-    /* --- 3. DADOS E RENDERIZAÇÃO DO ACCORDION (FAQ) --- */
+    // --- 4. COMPONENTE: Acordeão FAQ (Array de Objetos) ---
     const faqData = [
         {
-            pergunta: "Como funciona a primeira consulta de avaliação?",
-            resposta: "Nossa avaliação inclui um mapeamento completo da pele e análise de simetria. O diagnóstico é 100% individualizado para estruturar o plano ideal de tratamento."
+            question: "Como o programa auxilia na adequação à Lei do Bullying (Lei 13.185/2015)?",
+            answer: "Fornecemos diagnósticos institucionais, relatórios periódicos, capacitação de equipe e planos de ação pedagógicos exigidos pela legislação."
         },
         {
-            pergunta: "Os procedimentos exigem afastamento das atividades cotidianas?",
-            resposta: "A maioria dos nossos tratamentos utiliza tecnologia de ponta minimamente invasiva, permitindo o retorno imediato à sua rotina diária."
+            question: "O programa se aplica a quais faixas etárias?",
+            answer: "Nossa metodologia possui módulos adaptados para o Ensino Infantil, Fundamental I e II, além do Ensino Médio."
         },
         {
-            pergunta: "Quais são as formas de pagamento aceitas?",
-            resposta: "Aceitamos os principais cartões de crédito em até 12x, PIX e transferências bancárias com condições exclusivas para planos anuais."
+            question: "Quanto tempo leva a implementação completa?",
+            answer: "A fase inicial de diagnóstico e capacitação leva cerca de 15 dias. As atividades preventivas operam ao longo de todo o ano letivo."
         },
         {
-            pergunta: "É necessário agendamento prévio?",
-            resposta: "Sim. Para garantir a total privacidade e a experiência VIP de nossos clientes, atendemos estritamente com hora marcada."
+            question: "Os pais e responsáveis participam do processo?",
+            answer: "Sim! Incluímos workshops para famílias, promovendo uma aliança efetiva entre a comunidade escolar e o lar."
         }
     ];
 
-    const faqAccordion = document.getElementById('faq-accordion');
+    const accordionContainer = document.getElementById('accordion-container');
 
-    faqData.forEach((item, index) => {
-        const accordionItem = document.createElement('div');
-        accordionItem.className = 'accordion-item';
-        
-        accordionItem.innerHTML = `
-            <button class="accordion-header" id="faq-btn-${index}" aria-expanded="false">
-                <span>${item.pergunta}</span>
-                <span class="icon">+</span>
-            </button>
-            <div class="accordion-content">
-                <p>${item.resposta}</p>
+    function renderAccordion() {
+        accordionContainer.innerHTML = faqData.map((item, index) => `
+            <div class="accordion-item" data-index="${index}">
+                <button class="accordion-header">
+                    <span>${item.question}</span>
+                    <span class="icon-toggle">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>${item.answer}</p>
+                </div>
             </div>
-        `;
+        `).join('');
 
-        const headerBtn = accordionItem.querySelector('.accordion-header');
-        headerBtn.addEventListener('click', () => {
-            const isActive = accordionItem.classList.contains('active');
-            
-            // Fecha todos os itens
-            document.querySelectorAll('.accordion-item').forEach(el => {
-                el.classList.remove('active');
-                el.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-                el.querySelector('.icon').textContent = '+';
+        const headers = accordionContainer.querySelectorAll('.accordion-header');
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const active = item.classList.contains('active');
+                
+                // Fecha todos os itens
+                document.querySelectorAll('.accordion-item').forEach(el => {
+                    el.classList.remove('active');
+                    el.querySelector('.icon-toggle').textContent = '+';
+                });
+
+                // Se o clicado não estava ativo, abre ele
+                if (!active) {
+                    item.classList.add('active');
+                    item.querySelector('.icon-toggle').textContent = '−';
+                }
             });
-
-            // Se não estava ativo, abre
-            if (!isActive) {
-                accordionItem.classList.add('active');
-                headerBtn.setAttribute('aria-expanded', 'true');
-                accordionItem.querySelector('.icon').textContent = '−';
-            }
         });
+    }
 
-        faqAccordion.appendChild(accordionItem);
-    });
+    renderAccordion();
 });
